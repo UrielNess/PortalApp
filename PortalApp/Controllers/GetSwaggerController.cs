@@ -10,8 +10,9 @@ using PortalApp.Models;
 using System.Configuration;
 
 // password obfuscatio on connection string
-// take all sql connection
-
+// take all sql connections
+// new comment
+// new comment
 
 namespace PortalApp.Controllers
 {
@@ -24,6 +25,7 @@ namespace PortalApp.Controllers
                 List<swaggerClass> ec = new List<swaggerClass>();
                 string mainconn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
                 MySqlConnection sqlconn = new MySqlConnection(mainconn);
+                // comment
                 // extracting API uuid from query param in URL
                 string uuidParam = HttpContext.Current.Request.QueryString.Get("uuid");
                 // performing regex validation on uuid param to make sure there is no sql injection inside
