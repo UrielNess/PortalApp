@@ -17,6 +17,7 @@ namespace PortalApp.Controllers
         {
             try
             { 
+                // add commit
                 List<wsdlClass> ec = new List<wsdlClass>();
                 string mainconn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
                 MySqlConnection sqlconn = new MySqlConnection(mainconn);

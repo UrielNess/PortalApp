@@ -12,6 +12,7 @@ namespace PortalApp.Models
         public string portal_status { get; set; }
         public string tenant_id { get; set; }
         public string ssg_service_type { get; set; }
+        public string total_consumers { get; set; }
         public string metadata_tags { get; set; }
         public string hebrewServiceName { get; set; }
         public string officeName { get; set; }

@@ -35,14 +35,15 @@ namespace PortalApp.Controllers
                         tenant_id = sdr.GetValue(3).ToString(),
                         ssg_service_type = sdr.GetValue(4).ToString(),
                         metadata_tags = sdr.GetValue(5).ToString(),
-                        hebrewServiceName = sdr.GetValue(6).ToString(),
-                        officeName = sdr.GetValue(7).ToString(),
-                        databaseName = sdr.GetValue(8).ToString(),
-                        subject = sdr.GetValue(9).ToString(),
-                        serviceType = sdr.GetValue(10).ToString(),
-                        version = sdr.GetValue(11).ToString(),
-                        publisherType = sdr.GetValue(12).ToString(),
-                        description = sdr.GetValue(13).ToString(),
+                        total_consumers = sdr.GetValue(6).ToString(),
+                        hebrewServiceName = sdr.GetValue(7).ToString(),
+                        officeName = sdr.GetValue(8).ToString(),
+                        databaseName = sdr.GetValue(9).ToString(),
+                        subject = sdr.GetValue(10).ToString(),
+                        serviceType = sdr.GetValue(11).ToString(),
+                        version = sdr.GetValue(12).ToString(),
+                        publisherType = sdr.GetValue(13).ToString(),
+                        description = sdr.GetValue(14).ToString(),
 
                     });
                 }

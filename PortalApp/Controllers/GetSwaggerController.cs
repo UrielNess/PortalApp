@@ -26,6 +26,7 @@ namespace PortalApp.Controllers
                 string mainconn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
                 MySqlConnection sqlconn = new MySqlConnection(mainconn);
                 // comment
+                // comment
                 // extracting API uuid from query param in URL
                 string uuidParam = HttpContext.Current.Request.QueryString.Get("uuid");
                 // performing regex validation on uuid param to make sure there is no sql injection inside
