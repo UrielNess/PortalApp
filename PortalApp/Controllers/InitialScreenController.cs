@@ -17,6 +17,7 @@ namespace PortalApp.Controllers
         {
             try
             {
+                // access portal external db and execute query from view to fetch data
                 List<serviceClass> ec = new List<serviceClass>();
                 string mainconn = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
                 MySqlConnection sqlconn = new MySqlConnection(mainconn);
