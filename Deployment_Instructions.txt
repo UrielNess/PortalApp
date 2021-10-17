@@ -1,0 +1,32 @@
+
+Prior to building the solution there are some actions that are need to be executed on the DB of the portal. 
+------------------------------------------------------------------------------------------------------------
+
+-	Need to access the portal DB and create a new read only user by typing the following commands:
+a.	create user 'portal_al_user'@'%' identified by '7layer';
+b.	GRANT SELECT ON *.* TO 'portal_al_user'@'%';
+c.	Flush privileges;
+
+-	Create a new View on the portal DB  by typing the following command . It is possible  to execute these command from a mysql workbench  UI client tool for easier execution and control on the DB:
+
+      create or replace view initialScreen as
+      SELECT API.UUID, API.NAME, API.PORTAL_STATUS, API.TENANT_ID, API.SSG_SERVICE_TYPE, MARKDOWN_ASSET.MARKDOWN as metadata_tags, (select count(*) from APPLICATION_API_API_GROUP_XREF where APPLICATION_API_API_GROUP_XREF.API_UUID = API.UUID) as TOTAL_CONSUMERS,
+      convert(json_extract(MARKDOWN_ASSET.MARKDOWN, '$.hebrewServiceName') using utf8mb4) as hebrewServiceName,
+      convert(json_extract(MARKDOWN_ASSET.MARKDOWN, '$.officeName') using utf8mb4) as officeName,
+       convert (json_extract(MARKDOWN_ASSET.MARKDOWN, '$.databaseName') using utf8mb4) as databaseName, 
+       convert (json_extract(MARKDOWN_ASSET.MARKDOWN, '$.subject') using utf8mb4) as subject,
+       convert (json_extract(MARKDOWN_ASSET.MARKDOWN, '$.serviceType') using utf8mb4) as serviceType, 
+       convert (json_extract(MARKDOWN_ASSET.MARKDOWN, '$.version') using utf8mb4) as version,
+       convert (json_extract(MARKDOWN_ASSET.MARKDOWN, '$.publisherType') using utf8mb4) as publisherType,
+       convert (json_extract(MARKDOWN_ASSET.MARKDOWN, '$.description') using utf8mb4) as description
+      FROM API
+      left JOIN API_ASSET ON API.UUID=API_ASSET.API_UUID
+      LEFT join MARKDOWN_ASSET ON API.UUID=MARKDOWN_ASSET.TYPE_UUID
+      where API.ACCESS_STATUS='public' AND NOT API.TENANT_ID = 'APIM' and MARKDOWN_ASSET.TITLE='metadata_tags';
+
+please find below some additional clarifications regarding this solution
+---------------------------------------------------------------------------
+-	To have APIs published in portal AL, the publishers should use the x-TAGS from a swagger file and type them into a metadata_tags document of the API in the specific tenant portal:
+-	Client side must map the tenant urls to access them when click on “מעבר לצריכת שירות”
+-	To have APIs published in portal AL, the publishers should classify the API as open and publich in the taenant portal.
+-	Keep it simple and publish both the frontend application and backend application as HTTP and not HTTPS. Anyway it will be published and exposed by F5 as https with all protections
