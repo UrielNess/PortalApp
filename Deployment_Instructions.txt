@@ -26,7 +26,9 @@ c.	Flush privileges;
 
 please find below some additional clarifications regarding this solution
 ---------------------------------------------------------------------------
--	To have APIs published in portal AL, the publishers should use the x-TAGS from a swagger file and type them into a metadata_tags document of the API in the specific tenant portal:
+- you will need to modify the connection string in  the WEB.CONFIG file in the .net solution to point to the relevant DB SERVER IP of portal 
+
+To have APIs published in portal AL, the publishers should use the x-TAGS from a swagger file and type them into a metadata_tags document of the API in the specific tenant portal:
 -	Client side must map the tenant urls to access them when click on “מעבר לצריכת שירות”
 -	To have APIs published in portal AL, the publishers should classify the API as open and publich in the taenant portal.
 -	Keep it simple and publish both the frontend application and backend application as HTTP and not HTTPS. Anyway it will be published and exposed by F5 as https with all protections
